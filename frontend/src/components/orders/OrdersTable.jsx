@@ -12,8 +12,9 @@ export default function OrdersTable({
         <tr>
           <th>Cliente</th>
           <th>Dirección</th>
-          <th>Estado</th>
           <th>Conductor</th>
+          <th>Estado</th>
+          <th>Prioridad</th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -22,7 +23,7 @@ export default function OrdersTable({
         {pedidos.length === 0 ? (
           <tr>
             <td
-              colSpan="5"
+              colSpan="6"
               style={{
                 textAlign: "center",
                 padding: 40,
@@ -39,6 +40,8 @@ export default function OrdersTable({
 
               <td>{pedido.direccion}</td>
 
+              <td>{pedido.conductor || "-"}</td>
+
               <td>
                 <select
                   value={pedido.estado}
@@ -48,11 +51,6 @@ export default function OrdersTable({
                       e.target.value
                     )
                   }
-                  style={{
-                    padding: 8,
-                    borderRadius: 8,
-                    border: "1px solid #ddd",
-                  }}
                 >
                   <option>Pendiente</option>
                   <option>En ruta</option>
@@ -60,12 +58,30 @@ export default function OrdersTable({
                   <option>Cancelado</option>
                 </select>
 
-                <div style={{ marginTop: 8 }}>
+                <div style={{ marginTop: 6 }}>
                   <StatusBadge estado={pedido.estado} />
                 </div>
               </td>
 
-              <td>{pedido.conductor}</td>
+              <td>
+                <span
+                  style={{
+                    padding: "4px 10px",
+                    borderRadius: 20,
+                    background:
+                      pedido.prioridad === "Alta"
+                        ? "#ef4444"
+                        : pedido.prioridad === "Media"
+                        ? "#f59e0b"
+                        : "#22c55e",
+                    color: "#fff",
+                    fontWeight: 600,
+                    fontSize: 12,
+                  }}
+                >
+                  {pedido.prioridad}
+                </span>
+              </td>
 
               <td>
                 <div
@@ -74,30 +90,14 @@ export default function OrdersTable({
                     gap: 8,
                   }}
                 >
-                  <button
-                    onClick={() => editar(pedido)}
-                    style={{
-                      background: "#2563eb",
-                      color: "#fff",
-                      border: "none",
-                      borderRadius: 8,
-                      padding: "8px 12px",
-                      cursor: "pointer",
-                    }}
-                  >
+                  <button onClick={() => editar(pedido)}>
                     ✏️
                   </button>
 
                   <button
-                    onClick={() => eliminar(pedido.id)}
-                    style={{
-                      background: "#dc2626",
-                      color: "#fff",
-                      border: "none",
-                      borderRadius: 8,
-                      padding: "8px 12px",
-                      cursor: "pointer",
-                    }}
+                    onClick={() =>
+                      eliminar(pedido.id)
+                    }
                   >
                     🗑
                   </button>
