@@ -45,9 +45,7 @@ export default function Dashboard() {
 
         <section className="dashboard-content">
           <div className="map-wrapper">
-            <MapPanel
-              selectedLocation={selectedLocation}
-            />
+            <MapPanel destino={selectedLocation} />
           </div>
 
           <OrdersPanel

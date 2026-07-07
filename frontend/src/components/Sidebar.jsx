@@ -2,12 +2,13 @@ import { NavLink } from "react-router-dom";
 
 export default function Sidebar() {
   const menu = [
-    { icon: "🏠", text: "Dashboard", path: "/" },
+    { icon: "🏠", text: "Panel", path: "/" },
     { icon: "📦", text: "Repartos", path: "/repartos" },
     { icon: "🚚", text: "Rutas", path: "/rutas" },
     { icon: "👨‍💼", text: "Conductores", path: "/conductores" },
     { icon: "🚐", text: "Vehículos", path: "/vehiculos" },
-    { icon: "📈", text: "Estadísticas", path: "/estadisticas" },
+    { icon: "👥", text: "Clientes", path: "/clientes" },
+    { icon: "📊", text: "Estadísticas", path: "/estadisticas" },
     { icon: "⚙️", text: "Configuración", path: "/configuracion" },
   ];
 
@@ -19,16 +20,18 @@ export default function Sidebar() {
 
           <div>
             <h1>RutaFV</h1>
-            <span>Fleet Manager</span>
+            <span>Gerente de flota</span>
           </div>
         </div>
 
         <nav>
           {menu.map((item) => (
             <NavLink
-              key={item.text}
+              key={item.path}
               to={item.path}
-              className={({ isActive }) => (isActive ? "active" : "")}
+              className={({ isActive }) =>
+                isActive ? "active" : ""
+              }
             >
               <span>{item.icon}</span>
               {item.text}
