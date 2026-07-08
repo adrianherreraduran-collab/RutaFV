@@ -5,6 +5,10 @@ export default function OrderForm({
   cancelar,
   pedido = null,
 }) {
+  const clientes = JSON.parse(
+    localStorage.getItem("rutafv-customers") || "[]"
+  );
+
   const [nuevo, setNuevo] = useState({
     cliente: "",
     telefono: "",
@@ -28,6 +32,21 @@ export default function OrderForm({
       });
     }
   }, [pedido]);
+
+  function seleccionarCliente(nombre) {
+    const cliente = clientes.find(
+      (c) => c.nombre === nombre
+    );
+
+    if (!cliente) return;
+
+    setNuevo((prev) => ({
+      ...prev,
+      cliente: cliente.nombre,
+      telefono: cliente.telefono,
+      direccion: cliente.direccion,
+    }));
+  }
 
   function enviar(e) {
     e.preventDefault();
@@ -72,38 +91,36 @@ export default function OrderForm({
           gap: 20,
           marginTop: 20,
         }}
-      >
-        <input
-          placeholder="Cliente"
+      >        <select
           value={nuevo.cliente}
           onChange={(e) =>
-            setNuevo({
-              ...nuevo,
-              cliente: e.target.value,
-            })
+            seleccionarCliente(e.target.value)
           }
-        />
+        >
+          <option value="">
+            Seleccionar cliente
+          </option>
+
+          {clientes.map((cliente) => (
+            <option
+              key={cliente.id}
+              value={cliente.nombre}
+            >
+              {cliente.nombre}
+            </option>
+          ))}
+        </select>
 
         <input
+          readOnly
           placeholder="Teléfono"
           value={nuevo.telefono}
-          onChange={(e) =>
-            setNuevo({
-              ...nuevo,
-              telefono: e.target.value,
-            })
-          }
         />
 
         <input
+          readOnly
           placeholder="Dirección"
           value={nuevo.direccion}
-          onChange={(e) =>
-            setNuevo({
-              ...nuevo,
-              direccion: e.target.value,
-            })
-          }
         />
 
         <input
@@ -165,8 +182,7 @@ export default function OrderForm({
           gap: 10,
           marginTop: 25,
         }}
-      >
-        <button
+      >        <button
           type="button"
           className="new-order-btn"
           style={{
@@ -186,4 +202,4 @@ export default function OrderForm({
       </div>
     </form>
   );
-}
+}</div>
