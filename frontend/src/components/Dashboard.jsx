@@ -1,6 +1,6 @@
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
-import KpiCard from "../components/KpiCard";
+import KpiCard from "./KpiCard";
 
 export default function Dashboard() {
   return (

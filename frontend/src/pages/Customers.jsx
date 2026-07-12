@@ -1,7 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-
-import Sidebar from "../components/Sidebar";
-import Header from "../components/Header";
+import CustomerForm from "../components/customers/CustomerForm";
+import CustomerTable from "../components/customers/CustomerTable";
+import CustomerStats from "../components/customers/CustomerStats";
+import SearchCustomer from "../components/customers/SearchCustomer";
+import Sidebar from "../components/layout/Sidebar";
+import Header from "../components/layout/Header";
 
 const inicial = [
   {

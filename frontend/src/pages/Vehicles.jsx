@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 
-import Sidebar from "../components/Sidebar";
-import Header from "../components/Header";
+import Sidebar from "../components/layout/Sidebar";
+import Header from "../components/layout/Header";
 
 const inicial = [
   {
