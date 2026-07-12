@@ -1,5 +1,3 @@
-import CustomerTable from "../components/customers/CustomerTable";
-
 export default function CustomerTable({
   clientes,
   onEdit,

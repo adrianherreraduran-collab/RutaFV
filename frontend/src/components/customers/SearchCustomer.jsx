@@ -1,41 +1,21 @@
-return (
-  <div className="layout">
-    <Sidebar />
-import CustomerStats from "../components/customers/CustomerStats";
-import SearchCustomer from "../components/customers/SearchCustomer";
-    <main>
-      <Header />
-
-      <CustomerStats clientes={clientes} />
-
-      <div
+export default function SearchCustomer({ value, onChange }) {
+  return (
+    <div style={{ marginBottom: "20px" }}>
+      <input
+        type="text"
+        placeholder="🔍 Buscar cliente..."
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: "20px",
-          marginBottom: "20px",
+          width: "100%",
+          padding: "12px 16px",
+          borderRadius: "10px",
+          border: "1px solid #dcdcdc",
+          fontSize: "15px",
+          outline: "none",
+          boxSizing: "border-box",
         }}
-      >
-        <h2>Clientes</h2>
-
-        <div style={{ width: "350px" }}>
-          <SearchCustomer
-            value={buscar}
-            onChange={setBuscar}
-          />
-        </div>
-      </div>
-
-      <div className="card">
-
-        <div className="grid">
-
-          <input
-            name="nombre"
-            placeholder="Nombre"
-            value={form.nombre}
-            onChange={cambiar}
-          />
-
-          ...
+      />
+    </div>
+  );
+}
